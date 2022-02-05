@@ -1,12 +1,12 @@
 import React from 'react';
-import { Pair } from '../utils/generatePairs';
+import { Pair } from '../utils/pairs';
 import generateTable from '../utils/generateTable';
 import { createUseStyles } from 'react-jss'
 
 const useStyles = createUseStyles({
   table: {
     borderCollapse: 'collapse',
-    margin: '0 auto',
+    margin: [0, 'auto', 64, 'auto'],
 
     '& tr:nth-child(2n)': {
       backgroundColor: '#f7f7f7'

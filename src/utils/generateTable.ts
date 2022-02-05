@@ -1,4 +1,4 @@
-import { Pair, Status } from './generatePairs';
+import { Pair, Status } from './pairs';
 
 const WIN_SCORE = 3;
 const DRAW_SCORE = 1;

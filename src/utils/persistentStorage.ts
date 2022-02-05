@@ -1,4 +1,4 @@
-import { Pair } from './generatePairs';
+import { Pair } from './pairs';
 
 const STORAGE = window.localStorage;
 
@@ -8,6 +8,6 @@ export function getSavedPairs(): Pair[] | null {
   return JSON.parse(storedPairs);
 }
 
-export function savePairs(pairs: Pair[] | null) {
+export function persistPairs(pairs: Pair[] | null) {
   STORAGE.setItem('pairs', JSON.stringify(pairs));
 }

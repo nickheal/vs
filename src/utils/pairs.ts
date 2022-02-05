@@ -20,7 +20,7 @@ export interface Pair {
   status: Status
 }
 
-function generatePairs(array: any[]) {
+export function generatePairs(array: any[]) {
   const withIds = array.map(item => ({
     id: uuidv4(),
     value: item
@@ -42,5 +42,3 @@ function generatePairs(array: any[]) {
 
   return shuffle(paired);
 }
-
-export default generatePairs;
