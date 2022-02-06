@@ -1,5 +1,6 @@
 import React, { forwardRef, InputHTMLAttributes } from 'react';
 import { createUseStyles } from 'react-jss';
+import { srOnly } from '../utils/srOnly';
 
 const useStyles = createUseStyles({
   input: {
@@ -14,17 +15,30 @@ const useStyles = createUseStyles({
     maxWidth: 240,
     padding: 8,
     width: '100%'
-  }
+  },
+  label: (props: Props) => props.labelSrOnly ? ({ ...srOnly }) : ({})
 });
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {}
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  labelSrOnly?: boolean;
+}
 
 const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
-  const classes = useStyles();
+  const {
+    label,
+    labelSrOnly = false,
+    ...defaultProps
+  } = props;
+  
+  const classes = useStyles({ labelSrOnly });
 
-  return <input className={classes.input} {...props} ref={ref} />;
+  return (
+    <>
+      <label className={classes.label}>{ label }</label>
+      <input className={classes.input} {...defaultProps} ref={ref} />
+    </>
+  );
 });
-
-// const forwardedRef = forwardRef(Input);
 
 export default Input;

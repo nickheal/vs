@@ -4,10 +4,13 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   container: {
-    margin: [0, 'auto', 64, 'auto'],
+    margin: [0, 'auto', 64],
     maxWidth: 640,
     textAlign: 'center',
     width: '100%'
+  },
+  legend: {
+    margin: [0, 'auto', 16]
   },
   button: {
     background: '#eeffee',
@@ -30,12 +33,14 @@ function Setup(props: Props) {
   const classes = useStyles();
 
   const activeInput = useRef<HTMLInputElement>(null);
+  const [inputHasContent, setInputHasContent] = useState<boolean>(false);
   const [things, setThings] = useState<string[]>([]);
 
   function addThing(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === 'Enter' && e.currentTarget.value) {
       setThings([...things, e.currentTarget.value]);
       e.currentTarget.value = '';
+      setInputHasContent(false);
     }
   }
 
@@ -59,15 +64,31 @@ function Setup(props: Props) {
   }
 
   return (
-    <section className={classes.container}>
-      {things.map((thing, index) => <Input key={index} value={thing} onInput={e => updateThing(index, e.currentTarget.value)} />)}
-      
-      <Input onKeyDown={addThing} ref={activeInput} />
-      
-      {/* <button onClick={() => addThing()}>+</button> */}
+    <form className={classes.container}>
+      <legend className={classes.legend}>Type in all the things you want to compare.</legend>
 
-      <button className={classes.button} onClick={start}>START</button>
-    </section>
+      {things.map((thing, index) =>(
+        <Input
+          key={index}
+          label={`Thing to compare: ${index + 1}`}
+          labelSrOnly={true}
+          value={thing}
+          onInput={e => updateThing(index, e.currentTarget.value)}
+        />
+      ))}
+      
+      <Input
+        label={`Thing to compare: ${things.length + 1}`}
+        labelSrOnly={true}
+        onKeyDown={addThing}
+        onInput={e => setInputHasContent(!!e.currentTarget.value)}
+        ref={activeInput}
+      />
+
+      {inputHasContent ? <p>Hit enter to add another.</p> : null}
+
+      <button className={classes.button} onClick={start} type="button">START COMPARING</button>
+    </form>
   );
 }
 

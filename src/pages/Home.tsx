@@ -74,7 +74,7 @@ function Home() {
       {page === Page.Result ? <Result pairs={pairs} /> : null}
 
       <footer className={classes.footer}>
-        <button className={classes.reset} onClick={reset}>RESET</button>
+        <button className={classes.reset} onClick={reset}>RESTART</button>
       </footer>
     </main>
   );
