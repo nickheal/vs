@@ -3,6 +3,7 @@ import { Pair, Status } from '../utils/pairs';
 import Setup from './Setup';
 import Compare from './Compare';
 import Result from './Result';
+import ButtonConfirm from '../components/ButtonConfirm';
 import { getSavedPairs, persistPairs } from '../utils/persistentStorage';
 import { generatePairs } from '../utils/pairs';
 import { createUseStyles } from 'react-jss';
@@ -18,17 +19,6 @@ const useStyles = createUseStyles({
     fontWeight: 900,
     padding: 24,
     textAlign: 'center'
-  },
-  reset: {
-    background: '#ffeeee',
-    border: 0,
-    cursor: 'pointer',
-    fontWeight: 900,
-    padding: [8, 16],
-
-    '&:hover': {
-      background: '#ffdddd'
-    }
   }
 });
 
@@ -74,7 +64,7 @@ function Home() {
       {page === Page.Result ? <Result pairs={pairs} /> : null}
 
       <footer className={classes.footer}>
-        <button className={classes.reset} onClick={reset}>RESTART</button>
+        <ButtonConfirm onClick={reset}>RESTART</ButtonConfirm>
       </footer>
     </main>
   );
