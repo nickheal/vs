@@ -4,8 +4,9 @@ import { createUseStyles } from 'react-jss';
 const buttonClass = {
   border: 0,
   cursor: 'pointer',
+  fontSize: 16,
   fontWeight: 900,
-  padding: [8, 16]
+  padding: [14, 20]
 }
 
 const useStyles = createUseStyles({
@@ -21,7 +22,7 @@ const useStyles = createUseStyles({
     ...buttonClass,
 
     background: '#eeffee',
-    margin: [0, 8],
+    margin: [0, 16],
     '&:hover': {
       background: '#ddffdd'
     }
@@ -30,7 +31,7 @@ const useStyles = createUseStyles({
     ...buttonClass,
 
     background: '#ffeeee',
-    margin: [0, 8],
+    margin: [0, 16],
     '&:hover': {
       background: '#ffdddd'
     }

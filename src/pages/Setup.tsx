@@ -16,8 +16,9 @@ const useStyles = createUseStyles({
     background: '#eeffee',
     border: 0,
     cursor: 'pointer',
+    fontSize: 16,
     fontWeight: 900,
-    padding: [8, 16],
+    padding: [14, 20],
 
     '&:hover': {
       background: '#ddffdd'
