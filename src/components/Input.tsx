@@ -20,7 +20,7 @@ const useStyles = createUseStyles({
 });
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
+  label: string;
   labelSrOnly?: boolean;
 }
 
@@ -31,12 +31,12 @@ const Input = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
     ...defaultProps
   } = props;
   
-  const classes = useStyles({ labelSrOnly });
+  const classes = useStyles({ label, labelSrOnly });
 
   return (
     <>
-      <label className={classes.label}>{ label }</label>
-      <input className={classes.input} {...defaultProps} ref={ref} />
+      <label className={classes.label} htmlFor={label}>{ label }</label>
+      <input className={classes.input} {...defaultProps} name={label} id={label} ref={ref} />
     </>
   );
 });
