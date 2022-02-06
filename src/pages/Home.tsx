@@ -53,7 +53,9 @@ function Home() {
   }
 
   function start(things: string[]) {
-    setPairs(generatePairs(things));
+    const pairs = generatePairs(things);
+    persistPairs(pairs);
+    setPairs(pairs);
   }
 
   function reset() {
